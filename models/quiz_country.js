@@ -1,25 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const Country = sequelize.define(
-    "country",
+  const QuizCountry = sequelize.define(
+    "quiz_country",
     {
       id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true, // ✅ 자동 증가
-        primaryKey: true, // ✅ 기본 키
+        autoIncrement: true,
+        primaryKey: true,
       },
-      country: {
+      question: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      capital: {
+      answer: {
         type: DataTypes.STRING,
         allowNull: false,
       },
     },
     {
-      timestamps: false, // ✅ createdAt, updatedAt 비활성화
+      timestamps: false,
     }
   );
-
-  return Country;
+  return QuizCountry;
 };

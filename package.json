@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "nodemon app.js",
-    "seed": "node seed/seedCountries.js"
+    "seed": "node seed/seedAll.js"
   },
   "dependencies": {
     "dotenv": "^17.1.0",

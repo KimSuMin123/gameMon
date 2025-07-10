@@ -1,39 +1,61 @@
 const express = require("express");
 const router = express.Router();
-const { country: Country } = require("../models");
+const models = require("../models");
 
-// 랜덤 국가 반환
-router.get("/random", async (req, res) => {
+const quizModelMap = {
+  country: models.quiz_country,
+  common: models.quiz_common,
+  nonsense: models.quiz_nonsense,
+  lyrics: models.quiz_lyrics,
+};
+
+router.get("/:type/random", async (req, res) => {
+  const { type } = req.params;
+  const Model = quizModelMap[type];
+
+  if (!Model) return res.status(400).json({ error: "잘못된 퀴즈 타입" });
+
   try {
-    const count = await Country.count();
+    const count = await Model.count();
     const randomOffset = Math.floor(Math.random() * count);
-    const random = await Country.findOne({ offset: randomOffset });
-    res.json({ id: random.id, country: random.country });
+    const random = (await Model.findAll({ offset: randomOffset, limit: 1 }))[0];
+
+    if (!random) return res.status(404).json({ error: "문제가 없습니다" });
+
+    res.json({ id: random.id, question: random.question });
   } catch (err) {
-    console.error("❌ 랜덤 조회 실패:", err); // 추가
-    res.status(500).json({ error: "랜덤 조회 실패" });
+    console.error("❌ 랜덤 문제 조회 실패:", err);
+    res.status(500).json({ error: "문제 조회 실패" });
   }
 });
 
-// 수도 정답 확인
-router.post("/check", async (req, res) => {
-  const { id, capital } = req.body;
-  if (!id || !capital)
+// ✅ 정답 확인
+router.post("/:type/check", async (req, res) => {
+  const { type } = req.params;
+  const Model = quizModelMap[type];
+  const { id, answer } = req.body;
+
+  if (!Model)
+    return res
+      .status(400)
+      .json({ success: false, message: "잘못된 퀴즈 타입" });
+  if (!id || !answer)
     return res.status(400).json({ success: false, message: "필수값 누락" });
 
   try {
-    const country = await Country.findByPk(id);
-    if (!country)
-      return res.status(404).json({ success: false, message: "국가 없음" });
+    const item = await Model.findByPk(id);
+    if (!item)
+      return res.status(404).json({ success: false, message: "문제 없음" });
 
-    const isCorrect =
-      country.capital.toLowerCase() === capital.trim().toLowerCase();
+    const isCorrect = item.answer.toLowerCase() === answer.trim().toLowerCase();
+
     res.json({
       success: true,
       result: isCorrect ? "정답입니다!" : "오답입니다.",
-      correctCapital: isCorrect ? null : country.capital,
+      correctAnswer: isCorrect ? null : item.answer,
     });
   } catch (err) {
+    console.error("❌ 정답 확인 오류:", err);
     res.status(500).json({ success: false, error: "오류 발생" });
   }
 });
