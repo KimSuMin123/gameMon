@@ -72,7 +72,7 @@ npm run dev
 GET /quiz/<type>/random
 ```
 
-> > > > > > > 119c1e6efe5b89187d634485f9b0a42e4094e16d
+
 
 - 예시: `GET /country/random`
 
