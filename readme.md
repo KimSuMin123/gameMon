@@ -44,7 +44,9 @@ npm run dev
 
 더미 데이터를 DB에 삽입하려면 아래 명령어를 실행하세요:
 
-```npm run seed```
+```
+npm run seed
+```
 
 # 📘 text TO text Quiz API 문서
 
@@ -156,7 +158,6 @@ POST /quiz/<type>/check
 - 랜덤 조회: `GET /quiz/emoji/random`
 - 정답 확인: `POST /quiz/emoji/check`
 
----
 
 ## 📌 참고
 
