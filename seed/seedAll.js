@@ -4,6 +4,7 @@ const seedCountries = require("./seed-quiz-country");
 const seedQuizCommon = require("./seed-quiz-common");
 const seedQuizNonsense = require("./seed-quiz_nonsense");
 const seedQuizLyrics = require("./seed-quiz-lyrics");
+const seedQuizEmoji = require("./seed-quiz-emoji");
 
 async function seedAll() {
   try {
@@ -16,6 +17,7 @@ async function seedAll() {
     await seedQuizCommon();
     await seedQuizNonsense();
     await seedQuizLyrics();
+    await seedQuizEmoji();
 
     console.log("🎉 전체 시드 데이터 삽입 완료");
     process.exit();

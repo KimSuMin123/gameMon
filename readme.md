@@ -16,6 +16,7 @@
 - `common` : 상식 퀴즈
 - `nonsense` : 넌센스 퀴즈
 - `lyrics` : 가사 퀴즈
+- `emoji` : 이모지 퀴즈
 
 ---
 

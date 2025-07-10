@@ -7,6 +7,7 @@ const quizModelMap = {
   common: models.quiz_common,
   nonsense: models.quiz_nonsense,
   lyrics: models.quiz_lyrics,
+  emoji: models.quiz_emoji,
 };
 
 router.get("/:type/random", async (req, res) => {
