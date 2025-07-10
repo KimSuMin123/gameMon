@@ -27,10 +27,10 @@
 ### ✅ 요청
 
 ```http
-GET /<type>/random
+GET /quiz/<type>/random
 ```
 
-- 예시: `GET /country/random`
+- 예시: `GET /quiz/country/random`
 
 ### 🔁 응답 예시
 
@@ -50,10 +50,10 @@ GET /<type>/random
 ### ✅ 요청
 
 ```http
-POST /<type>/check
+POST /quiz/<type>/check
 ```
 
-- 예시: `POST /country/check`
+- 예시: `POST /quiz/country/check`
 
 ### 📨 요청 바디
 
@@ -90,23 +90,23 @@ POST /<type>/check
 
 ### 📍 나라 퀴즈
 
-- 랜덤 조회: `GET /country/random`
-- 정답 확인: `POST /country/check`
+- 랜덤 조회: `GET /quiz/country/random`
+- 정답 확인: `POST /quiz/country/check`
 
 ### 📍 상식 퀴즈
 
-- 랜덤 조회: `GET /common/random`
-- 정답 확인: `POST /common/check`
+- 랜덤 조회: `GET /quiz/common/random`
+- 정답 확인: `POST /quiz/common/check`
 
 ### 📍 넌센스 퀴즈
 
-- 랜덤 조회: `GET /nonsense/random`
-- 정답 확인: `POST /nonsense/check`
+- 랜덤 조회: `GET /quiz/nonsense/random`
+- 정답 확인: `POST /quiz/nonsense/check`
 
 ### 📍 가사 퀴즈
 
-- 랜덤 조회: `GET /lyrics/random`
-- 정답 확인: `POST /lyrics/check`
+- 랜덤 조회: `GET /quiz/lyrics/random`
+- 정답 확인: `POST /quiz/lyrics/check`
 
 ---
 
