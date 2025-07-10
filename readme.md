@@ -11,25 +11,25 @@ MySQL 콘솔에서 아래 명령어로 데이터베이스를 생성합니다:
 ````sql
 CREATE DATABASE gamemon;
 
-🛠 2. 환경 변수 설정 (.env 파일 생성)
-프로젝트 루트에 .env 파일을 생성하고 아래 내용을 입력합니다:
+## 🛠 2. 환경 변수 설정 (.env 파일 생성)
+```프로젝트 루트에 .env 파일을 생성하고 아래 내용을 입력합니다:
 
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=gamemon
 DB_USER=your_db_user      # 실제 DB 사용자 이름으로 변경
 DB_PASS=your_db_password  # 실제 DB 비밀번호로 변경
-🔒 주의: .env 파일은 절대 Git에 업로드하지 마세요!
+🔒 주의: .env 파일은 절대 Git에 업로드하지 마세요!```
 
-📦 3. 의존성 설치
+## 📦 3. 의존성 설치
 아래 명령어를 통해 필요한 패키지를 설치합니다:
 npm install
 
-🚀 4. 개발 서버 실행
+## 🚀 4. 개발 서버 실행
 개발 모드로 서버를 실행합니다:
 npm run dev
 
-🌱 5. Seed 데이터 삽입 (선택)
+## 🌱 5. Seed 데이터 삽입 (선택)
 더미 데이터를 DB에 삽입하려면 아래 명령어를 실행하세요:
 npm run seed
 
