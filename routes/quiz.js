@@ -23,7 +23,17 @@ router.get("/:type/random", async (req, res) => {
 
     if (!random) return res.status(404).json({ error: "문제가 없습니다" });
 
-    res.json({ id: random.id, question: random.question });
+    const response = {
+      id: random.id,
+      question: random.question,
+    };
+
+    // flag 컬럼이 존재할 경우 응답에 포함
+    if (random.flag) {
+      response.flag = random.flag;
+    }
+
+    res.json(response);
   } catch (err) {
     console.error("❌ 랜덤 문제 조회 실패:", err);
     res.status(500).json({ error: "문제 조회 실패" });
