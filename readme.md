@@ -20,6 +20,7 @@ DB_PORT=3306
 DB_NAME=gamemon
 DB_USER=your_db_user      # 실제 DB 사용자 이름으로 변경
 DB_PASS=your_db_password  # 실제 DB 비밀번호로 변경
+JWT_SECRET=your_secret_key
 ```
 
 🔒 주의: .env 파일은 절대 Git에 업로드하지 마세요!
