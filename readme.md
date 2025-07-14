@@ -62,8 +62,6 @@ npm run seed
 - `lyrics` : 가사 퀴즈
 - `emoji` : 이모지 퀴즈
 
-
-
 ## 1. 📌 랜덤 퀴즈 조회
 
 > 각 퀴즈 카테고리에서 무작위로 문제를 1개 가져옵니다.
@@ -73,8 +71,6 @@ npm run seed
 ```http
 GET /quiz/<type>/random
 ```
-
-
 
 - 예시: `GET /quiz/country/random`
 
@@ -86,8 +82,6 @@ GET /quiz/<type>/random
   "question": "프랑스"
 }
 ```
-
-
 
 ## 2. 📌 정답 확인
 
@@ -130,7 +124,6 @@ POST /quiz/<type>/check
 }
 ```
 
-
 ## 📂 카테고리별 예시
 
 ### 📍 나라 퀴즈
@@ -158,9 +151,76 @@ POST /quiz/<type>/check
 - 랜덤 조회: `GET /quiz/emoji/random`
 - 정답 확인: `POST /quiz/emoji/check`
 
-
 ## 📌 참고
 
 - 모든 응답은 `application/json` 형식으로 반환됩니다.
 - 정답이 맞았을 경우 `correctAnswer`는 `null`로 반환됩니다.
 - 정답이 틀렸을 경우 `correctAnswer`에 실제 정답이 포함됩니다.
+
+# 🔐 인증 API 문서
+
+GameMon에서는 JWT 기반 로그인 기능을 제공합니다.
+
+## 1. 🧾 회원가입
+
+```http
+POST /api/auth/register
+```
+
+### 📨 요청 바디
+
+```json
+{
+  "username": "testuser",
+  "password": "Test@1234",
+  "passwordConfirm": "Test@1234",
+  "name": "홍길동",
+  "nickname": "길동이",
+  "email": "hong@test.com"
+}
+```
+
+### 🔁 응답
+
+```json
+{
+  "success": true
+}
+```
+
+## 2. 🔑 로그인
+
+```http
+POST /api/auth/login
+```
+
+### 📨 요청 바디
+
+```json
+{
+  "username": "testuser",
+  "password": "Test@1234"
+}
+```
+
+### 🔁 응답
+
+```json
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR..."
+}
+```
+
+## 3. 🔍 중복 확인
+
+- 아이디: `GET /api/auth/check-username?username=testuser`
+- 닉네임: `GET /api/auth/check-nickname?nickname=길동이`
+
+## 🔐 인증된 요청 사용법
+
+```http
+Authorization: Bearer <JWT_TOKEN>
+```
+
+> JWT 토큰은 1시간 동안 유효합니다. 프론트엔드에서는 적절히 저장/갱신해야 합니다.

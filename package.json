@@ -4,6 +4,7 @@
     "seed": "node seed/seedAll.js"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.1",
